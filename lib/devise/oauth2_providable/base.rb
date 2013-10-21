@@ -3,7 +3,7 @@ class Devise::Oauth2Providable::Base
   include Mongoid::Timestamps
   include Mongoid::Validations
 
-  def default_collection_name
-    "oauth2_#{super}"
+  def self.collection_name
+    "oauth2_#{name.demodulize.pluralize.underscore}"
   end
 end
