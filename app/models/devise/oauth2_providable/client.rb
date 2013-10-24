@@ -1,4 +1,6 @@
-class Devise::Oauth2Providable::Client < Devise::Oauth2Providable::Base
+class Devise::Oauth2Providable::Client
+  include Devise::Oauth2Providable::Base
+
   field :name
   field :redirect_uri
   field :website

@@ -1,5 +1,3 @@
-require 'active_support/concern'
-
 module Devise
   module Oauth2Providable
     module ExpirableToken
@@ -51,5 +49,3 @@ module Devise
     end
   end
 end
-
-Devise::Oauth2Providable::BaseToken.send :include, Devise::Oauth2Providable::ExpirableToken

@@ -1,10 +1,16 @@
-class Devise::Oauth2Providable::BaseToken < Devise::Oauth2Providable::Base
-  field :token
-  field :expires_at, type: Time
+module Devise::Oauth2Providable::BaseToken
+  extend ActiveSupport::Concern
 
-  index({token: 1}, {unique: true, background: true})
-  index({expires_at: 1}, {background: true})
+  included do
+    include Devise::Oauth2Providable::ExpirableToken
 
-  belongs_to :user
-  belongs_to :client, class_name: 'Devise::Oauth2Providable::Client'
+    field :token
+    field :expires_at, type: Time
+
+    index({token: 1}, {unique: true, background: true})
+    index({expires_at: 1}, {background: true})
+
+    belongs_to :user
+    belongs_to :client, class_name: 'Devise::Oauth2Providable::Client'
+  end
 end

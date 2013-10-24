@@ -1,9 +1,10 @@
-class Devise::Oauth2Providable::Base
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::Validations
+module Devise::Oauth2Providable::Base
+  extend ActiveSupport::Concern
 
-  def self.collection_name
-    "oauth2_#{name.demodulize.pluralize.underscore}"
+  included do
+    include Mongoid::Document
+    include Mongoid::Timestamps
+    include Mongoid::Validations
+    store_in collection: "oauth2_#{name.demodulize.underscore.pluralize}".to_sym
   end
 end
